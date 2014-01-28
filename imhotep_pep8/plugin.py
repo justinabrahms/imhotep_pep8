@@ -12,5 +12,6 @@ class Pep8Linter(Tool):
         for line in output.split("\n"):
             match = self.regex.search(line)
             if match is not None:
-                retval[match.group('filename')][match.group('line_num')].append(match.group('message'))
+                filename = match.group('filename')[len(dirname)+1:]
+                retval[filename][match.group('line_num')].append(match.group('message'))
         return retval
